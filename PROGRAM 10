@@ -1,0 +1,42 @@
+def generate_permutations(ch, idx, result):
+    # base case
+    if idx == len(ch):
+        str1 = ""
+        result.append(str1.join(ch))
+        return
+ 
+    # traverse string from idx to end
+    for i in range(idx, len(ch)):
+        ch[i], ch[idx] = ch[idx], ch[i]
+        generate_permutations(ch, idx + 1, result)
+        ch[i], ch[idx] = ch[idx], ch[i]
+ 
+# Function to find the
+# kth permutation of n numbers
+def findKthPermutation(n, k):
+    s = ""
+    result = []
+ 
+    # Insert all natural number
+    # upto n in string
+    for i in range(1, n + 1):
+        s += str(i)
+ 
+    ch = [*s]
+    generate_permutations(ch, 0, result)
+ 
+    # sort the generated permutations
+    result.sort()
+ 
+    # make k 0-based indexed to point to kth sequence
+    return result[k - 1]
+ 
+ 
+# Driver code
+if __name__ == "__main__":
+    n = 3
+    k = 4
+ 
+    # function call
+    kth_perm_seq = findKthPermutation(n, k)
+    print(kth_perm_seq)
