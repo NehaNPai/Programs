@@ -1,0 +1,9 @@
+class Solution(object):
+   def findKthLargest(self, nums, k):
+      nums.sort()
+      if k ==1:
+         return nums[-1]
+      temp = 1
+      return nums[len(nums)-k]
+ob1 = Solution()
+print(ob1.findKthLargest([56,14,7,98,32,12,11,50,45,78,7,5,69], 5))
